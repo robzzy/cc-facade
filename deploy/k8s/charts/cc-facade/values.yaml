@@ -1,0 +1,6 @@
+replicaCount: 1
+image:
+  tag: latest
+service:
+  externalPort: 80
+  internalPort: 8000

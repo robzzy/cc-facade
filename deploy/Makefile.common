@@ -1,0 +1,17 @@
+.PHONY: etc
+
+ENV ?= default
+TAG ?= $(shell git rev-parse HEAD)
+REMOTE_DOCKER_HOST ?= zengzhiyuan
+
+
+# docker
+
+build-image:
+	docker build -t cc-facade-$(COMPONENT):$(TAG) .
+
+docker-tag:
+	docker tag cc-facade-$(COMPONENT):$(TAG) $(REMOTE_DOCKER_HOST)/cc-facade-$(COMPONENT):$(TAG)
+
+docker-push:
+	docker push $(REMOTE_DOCKER_HOST)/cc-facade-$(COMPONENT):$(TAG)

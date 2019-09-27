@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+    tag: {{ .Values.image.tag }}
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: zengzhiyuan/cc-facade-core:{{ .Values.image.tag }}
+          name: {{ .Chart.Name }}
+          env:
+            - name: RABBIT_USER
+              value: user
+            - name: RABBIT_SERVER
+              value: guest-rabbitmq
+            - name: RABBIT_PORT
+              value: "5672"
+            - name: RABBITMANAGEMENT_PORT
+              value: "15672"
+            - name: RABBIT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: guest-rabbitmq
+                  key: rabbitmq-password

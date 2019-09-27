@@ -1,0 +1,4 @@
+apiVersion: v1
+description: cc-facade k8s chart
+name: cc-facade
+version: 0.1.0

@@ -1,0 +1,34 @@
+AMQP_URI: amqp://${RABBIT_USER:guest}:${RABBIT_PASS:guest}@${RABBIT_SERVER:localhost}:${RABBIT_PORT:5672}/${RABBIT_VHOST:}
+
+LOGGING:
+    version: 1
+    disable_exsiting_loggers: False
+    filters:
+        truncate_request_trace:
+            (): nameko_tracer.filters.TruncateCallArgsFilter
+        truncate_response_trace:
+            (): nameko_tracer.filters.TruncateResponseFilter
+    formatters:
+        default:
+            format: "%(asctime)-15s [%(levelname)-4s] [cc-facade] [%(name)-12s] %(message)s"
+        tracer:
+            (): nameko_tracer.formatters.JSONFormatter
+    handlers:
+        default:
+            level: INFO
+            formatter: default
+            class: logging.StreamHandler
+        tracer:
+            class: logging.StreamHandler
+            formatter: tracer
+    loggers:
+        nameko_tracer:
+            level: INFO
+            handlers: [tracer]
+            filters:
+                - truncate_request_trace
+                - truncate_response_trace
+    root:
+        level: INFO
+        propagate: True
+        handlers: [default]
