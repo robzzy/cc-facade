@@ -1,5 +1,8 @@
 AMQP_URI: amqp://${RABBIT_USER:guest}:${RABBIT_PASS:guest}@${RABBIT_SERVER:localhost}:${RABBIT_PORT:5672}/${RABBIT_VHOST:}
 
+WEB_SERVER_ADDRESS: ${WEB_SERVER_ADDRESS:0.0.0.0:8000}
+
+
 LOGGING:
     version: 1
     disable_exsiting_loggers: False
