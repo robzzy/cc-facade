@@ -8,6 +8,11 @@ from nameko.testing.services import replace_dependencies
 from cc.services.core.service import CCFacade
 
 
+DEFAULT_DEPENDENCIES = {
+    "users_rpc",
+}
+
+
 @pytest.fixture
 def test_config(web_config, rabbit_config):
     yield
@@ -40,4 +45,4 @@ def create_service_meta(container_factory, test_config):
 
 @pytest.fixture
 def cc_facade(create_service_meta):
-    return create_service_meta()
+    return create_service_meta(*DEFAULT_DEPENDENCIES)

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import json
+
 from nameko.web.handlers import http
 
+from cc.services.core.users import UserService
 
-class CCFacade:
+
+class CCFacade(UserService):
 
     name = "cc"
 
