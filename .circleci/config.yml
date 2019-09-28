@@ -67,13 +67,12 @@ workflows:
   all-workflows:
     jobs:
       - test
-      - docker_approval:
+      - build_images
+      - push_approval:
           type: approval
           requires:
             - test
-      - build_images:
-          requires:
-            - docker_approval
+            - build_images
       - push_images:
           requires:
-            - build_images
+            - push_approval
