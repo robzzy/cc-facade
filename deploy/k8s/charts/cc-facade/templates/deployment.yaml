@@ -22,15 +22,6 @@ spec:
           name: {{ .Chart.Name }}
           env:
             - name: RABBIT_USER
-              value: user
+              value: guest 
             - name: RABBIT_SERVER
-              value: guest-rabbitmq
-            - name: RABBIT_PORT
-              value: "5672"
-            - name: RABBITMANAGEMENT_PORT
-              value: "15672"
-            - name: RABBIT_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: guest-rabbitmq
-                  key: rabbitmq-password
+              value: rabbitmq

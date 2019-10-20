@@ -74,7 +74,7 @@ test-chart:
 
 install-chart:
 	helm upgrade cc-facade deploy/k8s/charts/$(SERVICE_NAME) --install \
-	--namespace=$(NAMESPACE) \
+	--namespace=default \
 	--kube-context=$(CONTEXT) \
 	--set image.tag=$(TAG)
 

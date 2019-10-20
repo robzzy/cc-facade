@@ -10,7 +10,7 @@ RUN apt-get update && \
     groupadd -r nameko && useradd -r -g nameko nameko && \
     mkdir /var/nameko && chown -R nameko:nameko /var/nameko
 
-ENV path=/appenv/bin:${PATH}
+ENV PATH=/appenv/bin:${PATH}
 
 # --------
 
