@@ -27,4 +27,4 @@ WORKDIR /var/nameko
 EXPOSE 8000
 
 CMD . /appenv/bin/activate && \
-    nameko run --config config.yaml cc.services.core.service:CCFacade --backdoor 3000
+    nameko run --config config.yaml cc.services.core.service:CCFacade --backdoor-port 3000
