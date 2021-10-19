@@ -11,7 +11,7 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         "marshmallow==2.19.5",
-        "nameko==3.0.0-rc8",
+        "nameko==3.0.0rc10",
         "nameko-tracer==1.2.0",
     ],
     extras_require={
